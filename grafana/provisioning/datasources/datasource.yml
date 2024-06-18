@@ -1,0 +1,14 @@
+apiVersion: 1
+datasources:
+  - name: Actions
+    type: elasticsearch
+    access: proxy
+    url: http://elastic:9200
+    isDefault: true
+    jsonData:
+      esVersion: 8
+      logLevelField: ""
+      logMessageField: ""
+      index: "actions"
+      maxConcurrentShardRequests: 5
+      timeField: "@timestamp"

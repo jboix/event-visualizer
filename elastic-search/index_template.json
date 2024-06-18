@@ -1,0 +1,8 @@
+{
+  "index_patterns": ["actions*"],
+  "settings": {
+    "number_of_shards": 1,
+    "index.lifecycle.name": "actions_policy",
+    "index.lifecycle.rollover_alias": "actions"
+  }
+}

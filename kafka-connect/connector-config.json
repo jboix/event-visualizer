@@ -1,0 +1,15 @@
+{
+  "name": "actions-sink",
+  "config": {
+    "connector.class": "io.confluent.connect.elasticsearch.ElasticsearchSinkConnector",
+    "tasks.max": "1",
+    "topics": "actions",
+    "key.ignore": "true",
+    "schema.ignore": "true",
+    "connection.url": "http://elastic:9200",
+    "type.name": "_doc",
+    "name": "actions-sink",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter.schemas.enable": "false"
+  }
+}
