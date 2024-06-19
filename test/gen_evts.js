@@ -229,8 +229,8 @@ const main = async (numSessions) => {
       await postEvent(endEvent);
     }
   }
-  setTimeout(() => main(numSessions), 100000); // 100 seconds delay
+  setTimeout(() => main(numSessions), 10000); // 10 seconds delay
 };
 
 // Generate and post 1000 sessions
-main(10000);
+main(1000);

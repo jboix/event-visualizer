@@ -1,8 +1,8 @@
 # Event Processing and Visualization System
 
-This project provides an event processing and visualization system using a combination of Kafka,
-Redis, Elasticsearch, and Grafana. It allows for the reception, processing, and visualization
-of events in real-time.
+This project provides an event processing and visualization system using a combination of Redis,
+Elasticsearch, and Grafana. It allows for the reception, processing, and visualization of events in
+real-time.
 
 ![data-visualization](images/screenshot.png)
 
@@ -16,13 +16,6 @@ of events in real-time.
 - (Optional) Node.js to run the fixture generation script.
 
 **Setup**
-
-1. Build the REST API:
-    ```bash
-    cd qos-rest
-    mvn clean install
-    cd ..
-    ```
 
 1. Build all images and start the services:
     ```bash
@@ -68,21 +61,14 @@ graph TD
     C[Redis - Sessions cache]
   end
 
-  subgraph D[Event Streaming]
-    E[Kafka]
-    F[Kafka Connect]
-  end
-
   subgraph G[Data Storage]
     H[Elasticsearch]
   end
 
   Clients -->|Emit events| A
   B <-->|Cache session data| C
-  A -->|Publishes events| D
-  E -->|Consumed by| F
-  D -->|Publishes to| G
-  I ---->|Reads from| G
+  A -->|Publishes events| G
+  I -->|Reads from| G
 ```
 
 ### Service Descriptions
@@ -91,13 +77,9 @@ graph TD
 
 - **REST API**: Handles the reception of events and session management.
   - **Spring Boot Application**: The main application that processes incoming events, stores session
-    data, and publishes events to Kafka.
+    data, and publishes events to an Elasticsearch storage.
   - **Redis**: Acts as a cache for session data, providing fast read/write access to session
     information.
-
-- **Event Streaming**: Manages the streaming of events.
-  - **Kafka**: Acts as the message broker, handling the publishing and subscribing of events.
-  - **Kafka Connect**: Consumes events from Kafka and forwards them to Elasticsearch for storage.
 
 - **Data Storage**: Manages the storage of events.
   - **Elasticsearch**: Stores and indexes events, providing powerful search and analytics

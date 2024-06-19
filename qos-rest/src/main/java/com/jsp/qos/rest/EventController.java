@@ -1,7 +1,7 @@
 package com.jsp.qos.rest;
 
+import com.jsp.qos.rest.repository.ActionRepository;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,16 +13,14 @@ import java.util.concurrent.TimeUnit;
 @RequestMapping("/api/events")
 public class EventController {
 
-  private static final String TOPIC = "actions";
-
-  private final KafkaTemplate<String, Object> kafkaTemplate;
+  private final ActionRepository actionRepository;
   private final RedisTemplate<String, EventRequest> redisTemplate;
 
   public EventController(
-    KafkaTemplate<String, Object> kafkaTemplate,
+    ActionRepository actionRepository,
     RedisTemplate<String, EventRequest> redisTemplate
   ) {
-    this.kafkaTemplate = kafkaTemplate;
+    this.actionRepository = actionRepository;
     this.redisTemplate = redisTemplate;
   }
 
@@ -31,7 +29,7 @@ public class EventController {
     if ("SESSION".equals(eventRequest.getEventName())) {
       redisTemplate.opsForValue().set(eventRequest.getSessionId(), eventRequest);
       redisTemplate.expire(eventRequest.getSessionId(), 6, TimeUnit.HOURS);
-      kafkaTemplate.send(TOPIC, eventRequest.getSessionId(), eventRequest);
+      actionRepository.save(eventRequest);
       return;
     }
 
@@ -41,6 +39,6 @@ public class EventController {
     }
 
     eventRequest.setSession(sessionEvent.getData());
-    kafkaTemplate.send(TOPIC, eventRequest.getSessionId(), eventRequest);
+    actionRepository.save(eventRequest);
   }
 }

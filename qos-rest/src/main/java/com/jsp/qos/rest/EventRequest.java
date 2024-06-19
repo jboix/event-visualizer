@@ -1,30 +1,33 @@
 package com.jsp.qos.rest;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
-
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.DateFormat;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 @Data
+@Document(indexName = "actions")
 public class EventRequest {
+
+  @Id
+  @JsonIgnore
+  private String id;
+
   @JsonProperty("session_id")
+  @Field("session_id")
   private String sessionId;
 
   @JsonProperty("event_name")
+  @Field("event_name")
   private String eventName;
 
+  @Field(type = FieldType.Date, format = DateFormat.epoch_millis, name = "@timestamp")
   private Long timestamp;
 
   private Object data;
   private Object session;
-
-  // This field will be used only for serialization
-  @JsonProperty(value = "@timestamp", access = JsonProperty.Access.READ_ONLY)
-  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone = "UTC")
-  public LocalDateTime getTimestampISO() {
-    return LocalDateTime.ofInstant(Instant.ofEpochMilli(this.timestamp), ZoneOffset.UTC);
-  }
 }

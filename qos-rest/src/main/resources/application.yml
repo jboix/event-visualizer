@@ -1,18 +1,15 @@
 spring:
-  kafka:
-    bootstrap-servers: broker:9092
-    producer:
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-      properties:
-        retention.ms: 172800000
+  data:
+    redis:
+      host: redis
+      port: 6379
 
-  data.redis:
-    host: redis
-    port: 6379
+    elasticsearch.repositories.enabled: true
+
+  elasticsearch.uris: "http://elastic:9200"
+
 
 server:
   port: 8080
   http2.enabled: true
   compression.enabled: true
-
