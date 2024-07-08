@@ -1,6 +1,6 @@
 # Event Processing and Visualization System
 
-This project provides an event processing and visualization system using a combination of Redis,
+This project provides an event processing and visualization system using a combination of
 Elasticsearch, and Grafana. It allows for the reception, processing, and visualization of events in
 real-time.
 
@@ -22,22 +22,17 @@ real-time.
     docker-compose up --build
     ```
 
-2. Visit `http://localhost:3000` to view the data and create dashboards.
+2. Visit `http://localhost:3000` to view the data and create dashboards. Default dashboards have
+   already been provisioned in the grafana image to visualize the data.
 
-3. Generate test data:
+3. (Optional) To generate test data, simply do:
    ```bash
    cd test
-   sh ./start.sh
-   ```
-   This script installs npm dependencies and runs 5 parallel processes to simulate player sessions
-   with random values and published the events to the REST API. If you want to run a single process
-   simply do:
-   ```bash
-   ce test
    npm install
    npm run start
    ```
-   A default dashboard has already been provisioned in the grafana image to visualize this data.
+   This script installs npm dependencies and runs 100 parallel threads to simulate player sessions
+   with random values and published the events to the REST API.
 
 ## Documentation
 
@@ -58,7 +53,6 @@ graph TD
 
   subgraph A[Rest API]
     B[Spring Boot Application]
-    C[Redis - Sessions cache]
   end
 
   subgraph G[Data Storage]
@@ -66,7 +60,6 @@ graph TD
   end
 
   Clients -->|Emit events| A
-  B <-->|Cache session data| C
   A -->|Publishes events| G
   I -->|Reads from| G
 ```
@@ -78,8 +71,6 @@ graph TD
 - **REST API**: Handles the reception of events and session management.
   - **Spring Boot Application**: The main application that processes incoming events, stores session
     data, and publishes events to an Elasticsearch storage.
-  - **Redis**: Acts as a cache for session data, providing fast read/write access to session
-    information.
 
 - **Data Storage**: Manages the storage of events.
   - **Elasticsearch**: Stores and indexes events, providing powerful search and analytics

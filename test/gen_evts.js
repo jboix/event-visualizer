@@ -200,7 +200,7 @@ const postEvent = async (event) => {
 // Main function to generate and post events
 const main = async (numSessions) => {
   const now = Date.now();
-  const oneHourAgo = now - (30 * 60 * 1000);
+  const oneHourAgo = now - (60 * 1000);
   for (let i = 0; i < numSessions; i++) {
     const session_id = uuidv4();
     const platform = ["web", "apple", "android"][getRandomInt(0, 2)];
@@ -229,8 +229,8 @@ const main = async (numSessions) => {
       await postEvent(endEvent);
     }
   }
-  setTimeout(() => main(numSessions), 10000); // 10 seconds delay
 };
 
-// Generate and post 1000 sessions
-main(1000);
+
+setInterval(() => main(2000), 1000);
+

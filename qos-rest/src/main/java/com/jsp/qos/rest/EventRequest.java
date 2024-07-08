@@ -10,7 +10,7 @@ import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
 @Data
-@Document(indexName = "actions")
+@Document(indexName = "actions", createIndex = false)
 public class EventRequest {
 
   @Id

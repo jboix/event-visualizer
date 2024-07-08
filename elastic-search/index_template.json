@@ -4,5 +4,13 @@
     "number_of_shards": 1,
     "index.lifecycle.name": "actions_policy",
     "index.lifecycle.rollover_alias": "actions"
+  },
+  "mappings": {
+    "properties": {
+      "@timestamp": {
+        "type": "date",
+        "format": "epoch_millis"
+      }
+    }
   }
 }

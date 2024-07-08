@@ -1,9 +1,16 @@
 {
+  "type": "module",
   "scripts": {
-    "start": "node gen_evts.js"
+    "start": "node src/index.mjs",
+    "pm2:start": "pm2 start gen_evts.js -i 2 --name gen_evts && pm2 save",
+    "pm2:stop": "pm2 stop gen_evts && pm2 delete gen_evts"
   },
   "dependencies": {
+    "@faker-js/faker": "^8.4.1",
     "axios": "^1.7.2",
     "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "pm2": "^5.4.1"
   }
 }

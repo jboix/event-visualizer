@@ -1,0 +1,1410 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "links": [],
+  "panels": [
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 5,
+      "panels": [],
+      "title": "Active Sessions",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "PFF8059DC6752AFDD"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Session"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 328
+              },
+              {
+                "id": "filterable",
+                "value": true
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Started"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 171
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Last Updated"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 168
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Media Id"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 178
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 1
+      },
+      "id": 7,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "11.0.0",
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "PFF8059DC6752AFDD"
+          },
+          "metrics": [
+            {
+              "id": "1",
+              "settings": {
+                "size": "500"
+              },
+              "type": "raw_data"
+            }
+          ],
+          "query": "",
+          "refId": "A",
+          "timeField": "@timestamp"
+        }
+      ],
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "@timestamp",
+                "session_id",
+                "session.browser_version",
+                "session.browser",
+                "session.device_type",
+                "session.device_model",
+                "session.os_name",
+                "session.os_version",
+                "session.origin",
+                "session.media_id",
+                "session.player_platform"
+              ]
+            }
+          }
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": false,
+                "field": "@timestamp"
+              }
+            ]
+          }
+        },
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "@timestamp": {
+                "aggregations": [
+                  "lastNotNull",
+                  "firstNotNull"
+                ],
+                "operation": "aggregate"
+              },
+              "Bitrate": {
+                "aggregations": [
+                  "lastNotNull"
+                ],
+                "operation": "aggregate"
+              },
+              "Load time": {
+                "aggregations": [
+                  "sum"
+                ],
+                "operation": "aggregate"
+              },
+              "Playback duration": {
+                "aggregations": [
+                  "lastNotNull"
+                ],
+                "operation": "aggregate"
+              },
+              "Session": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "Time": {
+                "aggregations": [
+                  "allValues"
+                ]
+              },
+              "data.bandwidth": {
+                "aggregations": [
+                  "lastNotNull"
+                ],
+                "operation": "aggregate"
+              },
+              "data.bitrate": {
+                "aggregations": [
+                  "lastNotNull"
+                ],
+                "operation": "aggregate"
+              },
+              "data.playback_duration": {
+                "aggregations": [
+                  "lastNotNull"
+                ],
+                "operation": "aggregate"
+              },
+              "session.browser": {
+                "aggregations": [
+                  "lastNotNull"
+                ],
+                "operation": "aggregate"
+              },
+              "session.browser_version": {
+                "aggregations": [
+                  "lastNotNull"
+                ],
+                "operation": "aggregate"
+              },
+              "session.device_model": {
+                "aggregations": [
+                  "lastNotNull"
+                ],
+                "operation": "aggregate"
+              },
+              "session.device_type": {
+                "aggregations": [
+                  "lastNotNull"
+                ],
+                "operation": "aggregate"
+              },
+              "session.media_id": {
+                "aggregations": [
+                  "lastNotNull"
+                ],
+                "operation": "aggregate"
+              },
+              "session.origin": {
+                "aggregations": [
+                  "lastNotNull"
+                ],
+                "operation": "aggregate"
+              },
+              "session.os_name": {
+                "aggregations": [
+                  "lastNotNull"
+                ],
+                "operation": "aggregate"
+              },
+              "session.os_version": {
+                "aggregations": [
+                  "lastNotNull"
+                ],
+                "operation": "aggregate"
+              },
+              "session.player_platform": {
+                "aggregations": [
+                  "lastNotNull"
+                ],
+                "operation": "aggregate"
+              },
+              "session_id": {
+                "aggregations": [],
+                "operation": "groupby"
+              }
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "session.os_name (lastNotNull)",
+                "session.os_version (lastNotNull)"
+              ],
+              "reducer": "allValues"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "binary": {
+              "left": "session.browser (lastNotNull)",
+              "operator": "+",
+              "right": "session.browser_version (lastNotNull)"
+            },
+            "index": {
+              "asPercentile": false
+            },
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "session.browser (lastNotNull)",
+                "session.browser_version (lastNotNull)"
+              ],
+              "reducer": "allValues"
+            },
+            "replaceFields": false
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "session.browser (lastNotNull)": true,
+              "session.browser_version (lastNotNull)": true,
+              "session.os_name (lastNotNull)": true,
+              "session.os_version (lastNotNull)": true
+            },
+            "includeByName": {},
+            "indexByName": {
+              "@timestamp (firstNotNull)": 1,
+              "@timestamp (lastNotNull)": 2,
+              "All values": 12,
+              "All values 2": 13,
+              "session.browser (lastNotNull)": 5,
+              "session.browser_version (lastNotNull)": 6,
+              "session.device_model (lastNotNull)": 7,
+              "session.device_type (lastNotNull)": 8,
+              "session.media_id (lastNotNull)": 3,
+              "session.origin (lastNotNull)": 4,
+              "session.os_name (lastNotNull)": 9,
+              "session.os_version (lastNotNull)": 10,
+              "session.player_platform (lastNotNull)": 11,
+              "session_id": 0
+            },
+            "renameByName": {
+              "@timestamp (firstNotNull)": "Started",
+              "@timestamp (lastNotNull)": "Last Updated",
+              "All values": "OS",
+              "All values 2": "Browser",
+              "data.bandwidth (lastNotNull)": "Last Bandwidth",
+              "data.bitrate (lastNotNull)": "Last Bitrate",
+              "data.playback_duration (firstNotNull)": "Playback Duration",
+              "data.playback_duration (lastNotNull)": "Playback Duration",
+              "session.browser (lastNotNull)": "",
+              "session.browser (lastNotNull) + session.browser_version (lastNotNull)": "Browser",
+              "session.browser_version (lastNotNull)": "",
+              "session.device_model (lastNotNull)": "Device Model",
+              "session.device_type (lastNotNull)": "Device Type",
+              "session.media_id (lastNotNull)": "Media Id",
+              "session.origin (lastNotNull)": "Origin",
+              "session.os_version (lastNotNull)": "",
+              "session.player_platform (lastNotNull)": "Platform",
+              "session_id": "Session"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "PFF8059DC6752AFDD"
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 8
+      },
+      "id": 9,
+      "options": {
+        "dedupStrategy": "none",
+        "enableLogDetails": true,
+        "prettifyLogMessage": false,
+        "showCommonLabels": false,
+        "showLabels": false,
+        "showTime": true,
+        "sortOrder": "Descending",
+        "wrapLogMessage": false
+      },
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "PFF8059DC6752AFDD"
+          },
+          "metrics": [
+            {
+              "id": "1",
+              "settings": {
+                "size": "500"
+              },
+              "type": "raw_data"
+            }
+          ],
+          "query": "event_name:ERROR",
+          "refId": "A",
+          "timeField": "@timestamp"
+        }
+      ],
+      "title": "Lates Errors",
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "@timestamp",
+                "data.message",
+                "data.name",
+                "data.severity",
+                "session_id",
+                "data.log"
+              ]
+            }
+          }
+        },
+        {
+          "id": "extractFields",
+          "options": {
+            "source": "data.log"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "\\d+",
+            "renamePattern": "Log"
+          }
+        },
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "@timestamp",
+                "data.message",
+                "data.name",
+                "data.severity",
+                "session_id",
+                "Log"
+              ]
+            }
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {
+              "@timestamp": 0,
+              "data.log": 5,
+              "data.message": 1,
+              "data.name": 3,
+              "data.severity": 2,
+              "session_id": 4
+            },
+            "renameByName": {
+              "@timestamp": "",
+              "Log": "",
+              "data.log": "Logs",
+              "data.message": "Message",
+              "data.name": "Name",
+              "data.severity": "Severity",
+              "session_id": "Session"
+            }
+          }
+        }
+      ],
+      "type": "logs"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 15
+      },
+      "id": 4,
+      "panels": [
+        {
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "PFF8059DC6752AFDD"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Bitrate"
+                },
+                "properties": [
+                  {
+                    "id": "unit",
+                    "value": "KBs"
+                  },
+                  {
+                    "id": "color",
+                    "value": {
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Playback Duration"
+                },
+                "properties": [
+                  {
+                    "id": "unit",
+                    "value": "dtdurations"
+                  },
+                  {
+                    "id": "color",
+                    "value": {
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Bandwidth"
+                },
+                "properties": [
+                  {
+                    "id": "unit",
+                    "value": "KBs"
+                  },
+                  {
+                    "id": "thresholds",
+                    "value": {
+                      "mode": "absolute",
+                      "steps": [
+                        {
+                          "color": "red",
+                          "value": null
+                        },
+                        {
+                          "color": "#EAB839",
+                          "value": 700
+                        },
+                        {
+                          "color": "green",
+                          "value": 1500
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Buffer Duration"
+                },
+                "properties": [
+                  {
+                    "id": "unit",
+                    "value": "s"
+                  },
+                  {
+                    "id": "thresholds",
+                    "value": {
+                      "mode": "absolute",
+                      "steps": [
+                        {
+                          "color": "green",
+                          "value": null
+                        },
+                        {
+                          "color": "red",
+                          "value": 60
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Stall Duration"
+                },
+                "properties": [
+                  {
+                    "id": "unit",
+                    "value": "s"
+                  },
+                  {
+                    "id": "thresholds",
+                    "value": {
+                      "mode": "absolute",
+                      "steps": [
+                        {
+                          "color": "green",
+                          "value": null
+                        },
+                        {
+                          "color": "red",
+                          "value": 10
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Stall Count"
+                },
+                "properties": [
+                  {
+                    "id": "unit",
+                    "value": "none"
+                  },
+                  {
+                    "id": "thresholds",
+                    "value": {
+                      "mode": "absolute",
+                      "steps": [
+                        {
+                          "color": "green",
+                          "value": null
+                        },
+                        {
+                          "color": "#EAB839",
+                          "value": 1
+                        },
+                        {
+                          "color": "red",
+                          "value": 5
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 11,
+            "w": 6,
+            "x": 0,
+            "y": 16
+          },
+          "id": 1,
+          "options": {
+            "colorMode": "background",
+            "graphMode": "none",
+            "justifyMode": "center",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "/.*/",
+              "values": false
+            },
+            "showPercentChange": false,
+            "text": {},
+            "textMode": "value_and_name",
+            "wideLayout": true
+          },
+          "pluginVersion": "11.0.0",
+          "targets": [
+            {
+              "alias": "",
+              "bucketAggs": [],
+              "datasource": {
+                "type": "elasticsearch",
+                "uid": "PFF8059DC6752AFDD"
+              },
+              "metrics": [
+                {
+                  "id": "1",
+                  "settings": {
+                    "size": "500"
+                  },
+                  "type": "raw_data"
+                }
+              ],
+              "query": "NOT event_name:START AND NOT event_name:ERROR",
+              "refId": "A",
+              "timeField": "@timestamp"
+            }
+          ],
+          "title": "Last Metrics",
+          "transformations": [
+            {
+              "id": "filterFieldsByName",
+              "options": {
+                "include": {
+                  "names": [
+                    "data.bandwidth",
+                    "data.bitrate",
+                    "data.buffer_duration",
+                    "data.playback_duration",
+                    "data.stall_count",
+                    "data.stall_duration",
+                    "session_id",
+                    "@timestamp"
+                  ]
+                }
+              }
+            },
+            {
+              "id": "organize",
+              "options": {
+                "excludeByName": {
+                  "@timestamp": false,
+                  "@timestamp (lastNotNull)": true,
+                  "session_id": true
+                },
+                "includeByName": {},
+                "indexByName": {
+                  "@timestamp (lastNotNull)": 3,
+                  "data.bandwidth (lastNotNull)": 2,
+                  "data.bitrate (lastNotNull)": 1,
+                  "data.buffer_duration (lastNotNull)": 4,
+                  "data.playback_duration (lastNotNull)": 7,
+                  "data.stall_count (lastNotNull)": 5,
+                  "data.stall_duration (lastNotNull)": 6,
+                  "session_id": 0
+                },
+                "renameByName": {
+                  "@timestamp (firstNotNull)": "Started",
+                  "@timestamp (lastNotNull)": "Last Updated",
+                  "data.bandwidth": "Bandwidth",
+                  "data.bandwidth (lastNotNull)": "Bandwidth",
+                  "data.bitrate": "Bitrate",
+                  "data.bitrate (lastNotNull)": "Bitrate",
+                  "data.buffer_duration": "Buffer Duration",
+                  "data.buffer_duration (lastNotNull)": "Buffer Duration",
+                  "data.playback_duration": "Playback Duration",
+                  "data.playback_duration (firstNotNull)": "Playback Duration",
+                  "data.playback_duration (lastNotNull)": "Playback Duration",
+                  "data.stall_count": "Stall Count",
+                  "data.stall_count (lastNotNull)": "Stall Count",
+                  "data.stall_duration": "Stall Duration",
+                  "data.stall_duration (lastNotNull)": "Stall Duration",
+                  "session_id": "Session"
+                }
+              }
+            },
+            {
+              "id": "reduce",
+              "options": {
+                "includeTimeField": false,
+                "mode": "reduceFields",
+                "reducers": [
+                  "firstNotNull"
+                ]
+              }
+            }
+          ],
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "PFF8059DC6752AFDD"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "ms"
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Assets"
+                },
+                "properties": [
+                  {
+                    "id": "thresholds",
+                    "value": {
+                      "mode": "absolute",
+                      "steps": [
+                        {
+                          "color": "green",
+                          "value": null
+                        },
+                        {
+                          "color": "#EAB839",
+                          "value": 500
+                        },
+                        {
+                          "color": "red",
+                          "value": 1000
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "DRM"
+                },
+                "properties": [
+                  {
+                    "id": "thresholds",
+                    "value": {
+                      "mode": "absolute",
+                      "steps": [
+                        {
+                          "color": "green",
+                          "value": null
+                        },
+                        {
+                          "color": "#EAB839",
+                          "value": 200
+                        },
+                        {
+                          "color": "red",
+                          "value": 400
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Media Source"
+                },
+                "properties": [
+                  {
+                    "id": "thresholds",
+                    "value": {
+                      "mode": "absolute",
+                      "steps": [
+                        {
+                          "color": "green",
+                          "value": null
+                        },
+                        {
+                          "color": "#EAB839",
+                          "value": 1000
+                        },
+                        {
+                          "color": "red",
+                          "value": 1500
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Total"
+                },
+                "properties": [
+                  {
+                    "id": "thresholds",
+                    "value": {
+                      "mode": "absolute",
+                      "steps": [
+                        {
+                          "color": "green",
+                          "value": null
+                        },
+                        {
+                          "color": "#EAB839",
+                          "value": 1700
+                        },
+                        {
+                          "color": "red",
+                          "value": 2900
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 11,
+            "w": 6,
+            "x": 6,
+            "y": 16
+          },
+          "id": 2,
+          "options": {
+            "colorMode": "background",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [],
+              "fields": "/.*/",
+              "values": true
+            },
+            "showPercentChange": false,
+            "textMode": "auto",
+            "wideLayout": true
+          },
+          "pluginVersion": "11.0.0",
+          "targets": [
+            {
+              "alias": "",
+              "bucketAggs": [],
+              "datasource": {
+                "type": "elasticsearch",
+                "uid": "PFF8059DC6752AFDD"
+              },
+              "metrics": [
+                {
+                  "id": "1",
+                  "settings": {
+                    "size": "500"
+                  },
+                  "type": "raw_data"
+                }
+              ],
+              "query": "event_name:START",
+              "refId": "A",
+              "timeField": "@timestamp"
+            }
+          ],
+          "title": "Load Time",
+          "transformations": [
+            {
+              "id": "filterFieldsByName",
+              "options": {
+                "include": {
+                  "names": [
+                    "data.time_metrics.asset",
+                    "data.time_metrics.drm",
+                    "data.time_metrics.media_source",
+                    "data.time_metrics.total",
+                    "session_id",
+                    "@timestamp"
+                  ]
+                }
+              }
+            },
+            {
+              "id": "organize",
+              "options": {
+                "excludeByName": {
+                  "@timestamp": true,
+                  "session_id": true
+                },
+                "includeByName": {},
+                "indexByName": {
+                  "@timestamp": 1,
+                  "data.player_position": 2,
+                  "session_id": 0
+                },
+                "renameByName": {
+                  "@timestamp": "Time",
+                  "data.bitrate": "Bitrate",
+                  "data.player_position": "Position",
+                  "data.time_metrics.asset": "Assets",
+                  "data.time_metrics.drm": "DRM",
+                  "data.time_metrics.media_source": "Media Source",
+                  "data.time_metrics.total": "Total",
+                  "session_id": "Session"
+                }
+              }
+            },
+            {
+              "id": "reduce",
+              "options": {
+                "includeTimeField": false,
+                "mode": "reduceFields",
+                "reducers": [
+                  "firstNotNull"
+                ]
+              }
+            }
+          ],
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "PFF8059DC6752AFDD"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "stepAfter",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Bandwidth"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "blue",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Bitrate"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "yellow",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 11,
+            "w": 12,
+            "x": 12,
+            "y": 16
+          },
+          "id": 6,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "maxHeight": 600,
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "alias": "Bitrate",
+              "bucketAggs": [
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "10s"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "elasticsearch",
+                "uid": "PFF8059DC6752AFDD"
+              },
+              "metrics": [
+                {
+                  "field": "data.bitrate",
+                  "id": "1",
+                  "type": "avg"
+                }
+              ],
+              "query": "(NOT event_name:START)",
+              "refId": "A",
+              "timeField": "@timestamp"
+            },
+            {
+              "alias": "Bandwidth",
+              "bucketAggs": [
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "10s"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "elasticsearch",
+                "uid": "PFF8059DC6752AFDD"
+              },
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "data.bandwidth",
+                  "id": "1",
+                  "type": "avg"
+                }
+              ],
+              "query": "NOT event_name:START",
+              "refId": "B",
+              "timeField": "@timestamp"
+            }
+          ],
+          "title": "Average bitrate",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "PFF8059DC6752AFDD"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "continuous-GrYlRd"
+              },
+              "custom": {
+                "fillOpacity": 70,
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": 10000,
+                "lineWidth": 0,
+                "spanNulls": false
+              },
+              "mappings": [
+                {
+                  "options": {
+                    "BUFFER": {
+                      "color": "orange",
+                      "index": 0,
+                      "text": "Buffering"
+                    },
+                    "ERROR": {
+                      "color": "red",
+                      "index": 4,
+                      "text": "Error"
+                    },
+                    "HEARTBEAT": {
+                      "color": "#5795f238",
+                      "index": 2,
+                      "text": "Playing"
+                    },
+                    "STALL": {
+                      "color": "yellow",
+                      "index": 1,
+                      "text": "Stall"
+                    },
+                    "START": {
+                      "color": "purple",
+                      "index": 3,
+                      "text": "Start"
+                    },
+                    "STOP": {
+                      "color": "green",
+                      "index": 5,
+                      "text": "Finished"
+                    }
+                  },
+                  "type": "value"
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 24,
+            "x": 0,
+            "y": 27
+          },
+          "id": 3,
+          "options": {
+            "alignValue": "left",
+            "legend": {
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": false
+            },
+            "mergeValues": true,
+            "rowHeight": 0.9,
+            "showValue": "never",
+            "tooltip": {
+              "maxHeight": 600,
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "11.0.0",
+          "targets": [
+            {
+              "alias": "",
+              "bucketAggs": [],
+              "datasource": {
+                "type": "elasticsearch",
+                "uid": "PFF8059DC6752AFDD"
+              },
+              "metrics": [
+                {
+                  "id": "1",
+                  "settings": {
+                    "size": "500"
+                  },
+                  "type": "raw_data"
+                }
+              ],
+              "query": "",
+              "refId": "A",
+              "timeField": "@timestamp"
+            }
+          ],
+          "title": "Event timeline",
+          "transformations": [
+            {
+              "id": "filterFieldsByName",
+              "options": {
+                "byVariable": false,
+                "include": {
+                  "names": [
+                    "@timestamp",
+                    "event_name"
+                  ]
+                }
+              }
+            },
+            {
+              "id": "organize",
+              "options": {
+                "excludeByName": {
+                  "@timestamp": false
+                },
+                "includeByName": {},
+                "indexByName": {},
+                "renameByName": {
+                  "@timestamp": "",
+                  "event_name": "Event"
+                }
+              }
+            }
+          ],
+          "type": "state-timeline"
+        }
+      ],
+      "title": "Metrics",
+      "type": "row"
+    }
+  ],
+  "refresh": "5s",
+  "schemaVersion": 39,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "datasource": {
+          "type": "elasticsearch",
+          "uid": "PFF8059DC6752AFDD"
+        },
+        "filters": [],
+        "hide": 0,
+        "name": "Filters",
+        "skipUrlSync": false,
+        "type": "adhoc"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-15m",
+    "to": "now"
+  },
+  "timeRangeUpdatedDuringEditOrView": false,
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Active Sessions",
+  "uid": "bdq5sq0nz5pmod",
+  "version": 1,
+  "weekStart": ""
+}
