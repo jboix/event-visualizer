@@ -1,0 +1,1081 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 5,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "PFF8059DC6752AFDD"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "stepAfter",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Bandwidth"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Bitrate"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "yellow",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 7,
+        "x": 0,
+        "y": 0
+      },
+      "id": 3,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "maxHeight": 600,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "alias": "Bitrate",
+          "bucketAggs": [
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "10s"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "PFF8059DC6752AFDD"
+          },
+          "metrics": [
+            {
+              "field": "data.bitrate",
+              "id": "1",
+              "type": "avg"
+            }
+          ],
+          "query": "NOT event_name:(START OR ERROR) AND session.player_platform:${platform} AND\nsession.media_id:urn\\:${bu}\\:* AND session.device_type:${device}\nAND\nsession.media_id:${media_id} ",
+          "refId": "A",
+          "timeField": "@timestamp"
+        },
+        {
+          "alias": "Bandwidth",
+          "bucketAggs": [
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "10s"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "PFF8059DC6752AFDD"
+          },
+          "hide": false,
+          "metrics": [
+            {
+              "field": "data.bandwidth",
+              "id": "1",
+              "type": "avg"
+            }
+          ],
+          "query": "NOT event_name:(START OR ERROR) AND session.player_platform:${platform} AND\nsession.media_id:urn\\:${bu}\\:* AND session.device_type:${device}\nAND\nsession.media_id:${media_id} ",
+          "refId": "B",
+          "timeField": "@timestamp"
+        }
+      ],
+      "title": "Average bitrate",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "PFF8059DC6752AFDD"
+      },
+      "description": "Stall rate normalized to duration watched.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "stepAfter",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "C 1"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percentunit"
+              },
+              {
+                "id": "displayName",
+                "value": "Rate"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 7,
+        "y": 0
+      },
+      "id": 18,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "maxHeight": 600,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "alias": "Average stall count",
+          "bucketAggs": [
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "10s"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "PFF8059DC6752AFDD"
+          },
+          "hide": true,
+          "metrics": [
+            {
+              "field": "data.stall_count",
+              "id": "1",
+              "type": "avg"
+            }
+          ],
+          "query": "NOT event_name:(START OR ERROR)\nAND session.player_platform:${platform} AND\nsession.media_id:urn\\:${bu}\\:* AND session.device_type:${device}\nAND\nsession.media_id:${media_id} ",
+          "refId": "A",
+          "timeField": "@timestamp"
+        },
+        {
+          "alias": "Average Duration",
+          "bucketAggs": [
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "10s"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "PFF8059DC6752AFDD"
+          },
+          "hide": true,
+          "metrics": [
+            {
+              "field": "data.playback_duration",
+              "id": "1",
+              "type": "avg"
+            }
+          ],
+          "query": "NOT event_name:(START OR ERROR)\nAND session.player_platform:${platform} AND\nsession.media_id:urn\\:${bu}\\:* AND session.device_type:${device}\nAND\nsession.media_id:${media_id} ",
+          "refId": "B",
+          "timeField": "@timestamp"
+        },
+        {
+          "datasource": {
+            "name": "Expression",
+            "type": "__expr__",
+            "uid": "__expr__"
+          },
+          "expression": "$A / $B",
+          "hide": false,
+          "refId": "C",
+          "type": "math"
+        }
+      ],
+      "title": "Stall Rate",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "PFF8059DC6752AFDD"
+      },
+      "description": "Stall duration duration to watched ratio,",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "stepAfter",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "C 1"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percentunit"
+              },
+              {
+                "id": "displayName",
+                "value": "Rate"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 9,
+        "x": 15,
+        "y": 0
+      },
+      "id": 20,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "maxHeight": 600,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "alias": "Average stall duration",
+          "bucketAggs": [
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "10s"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "PFF8059DC6752AFDD"
+          },
+          "hide": true,
+          "metrics": [
+            {
+              "field": "data.stall_duration",
+              "id": "1",
+              "type": "avg"
+            }
+          ],
+          "query": "NOT event_name:(START OR ERROR)\nAND session.player_platform:${platform} AND\nsession.media_id:urn\\:${bu}\\:* AND session.device_type:${device}\nAND\nsession.media_id:${media_id} ",
+          "refId": "A",
+          "timeField": "@timestamp"
+        },
+        {
+          "alias": "Average Duration",
+          "bucketAggs": [
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "10s"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "PFF8059DC6752AFDD"
+          },
+          "hide": true,
+          "metrics": [
+            {
+              "field": "data.playback_duration",
+              "id": "1",
+              "type": "avg"
+            }
+          ],
+          "query": "NOT event_name:(START OR ERROR)\nAND session.player_platform:${platform} AND\nsession.media_id:urn\\:${bu}\\:* AND session.device_type:${device}\nAND\nsession.media_id:${media_id} ",
+          "refId": "B",
+          "timeField": "@timestamp"
+        },
+        {
+          "datasource": {
+            "name": "Expression",
+            "type": "__expr__",
+            "uid": "__expr__"
+          },
+          "expression": "$A / $B",
+          "hide": false,
+          "refId": "C",
+          "type": "math"
+        }
+      ],
+      "title": "Stall Duration Rate",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "PFF8059DC6752AFDD"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMin": 0,
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 25,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "stepBefore",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 3,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 13,
+        "x": 0,
+        "y": 8
+      },
+      "id": 19,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "maxHeight": 600,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.0.0",
+      "targets": [
+        {
+          "alias": "DRM",
+          "bucketAggs": [
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "10s",
+                "min_doc_count": "0",
+                "timeZone": "utc",
+                "trimEdges": "0"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "PFF8059DC6752AFDD"
+          },
+          "hide": false,
+          "metrics": [
+            {
+              "field": "data.time_metrics.drm",
+              "id": "1",
+              "type": "avg"
+            }
+          ],
+          "query": "event_name:START\nAND data.player_platform:${platform} AND\ndata.media_id:urn\\:${bu}\\:* AND data.device_type:${device}\nAND\ndata.media_id:${media_id} ",
+          "refId": "B",
+          "timeField": "@timestamp"
+        },
+        {
+          "alias": "Media Source",
+          "bucketAggs": [
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "10s",
+                "min_doc_count": "0",
+                "timeZone": "utc",
+                "trimEdges": "0"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "PFF8059DC6752AFDD"
+          },
+          "hide": false,
+          "metrics": [
+            {
+              "field": "data.time_metrics.media_source",
+              "id": "1",
+              "type": "avg"
+            }
+          ],
+          "query": "event_name:START\nAND data.player_platform:${platform} AND\ndata.media_id:urn\\:${bu}\\:* AND data.device_type:${device}\nAND\ndata.media_id:${media_id} ",
+          "refId": "C",
+          "timeField": "@timestamp"
+        },
+        {
+          "alias": "Asset",
+          "bucketAggs": [
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "10s",
+                "min_doc_count": "0",
+                "timeZone": "utc",
+                "trimEdges": "0"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "PFF8059DC6752AFDD"
+          },
+          "metrics": [
+            {
+              "field": "data.time_metrics.asset",
+              "id": "1",
+              "type": "avg"
+            }
+          ],
+          "query": "event_name:START\nAND data.player_platform:${platform} AND\ndata.media_id:urn\\:${bu}\\:* AND data.device_type:${device}\nAND\ndata.media_id:${media_id} ",
+          "refId": "A",
+          "timeField": "@timestamp"
+        }
+      ],
+      "title": "Average Loading time",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "PFF8059DC6752AFDD"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Stall Duration"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "s"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "orange",
+                      "value": 1
+                    },
+                    {
+                      "color": "red",
+                      "value": 2
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Stall Count"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "none"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "orange",
+                      "value": 1
+                    },
+                    {
+                      "color": "red",
+                      "value": 1.5
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Buffer Duration"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "s"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "orange",
+                      "value": 1
+                    },
+                    {
+                      "color": "red",
+                      "value": 2
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 11,
+        "x": 13,
+        "y": 8
+      },
+      "id": 16,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.0.0",
+      "targets": [
+        {
+          "alias": "Stall Duration",
+          "bucketAggs": [
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "10s"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "PFF8059DC6752AFDD"
+          },
+          "metrics": [
+            {
+              "field": "data.stall_duration",
+              "id": "1",
+              "type": "avg"
+            }
+          ],
+          "query": "NOT event_name:(START OR ERROR)\nAND session.player_platform:${platform} AND\nsession.media_id:urn\\:${bu}\\:* AND session.device_type:${device}\nAND\nsession.media_id:${media_id} ",
+          "refId": "A",
+          "timeField": "@timestamp"
+        },
+        {
+          "alias": "Stall Count",
+          "bucketAggs": [
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "10s"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "PFF8059DC6752AFDD"
+          },
+          "hide": false,
+          "metrics": [
+            {
+              "field": "data.stall_count",
+              "id": "1",
+              "type": "avg"
+            }
+          ],
+          "query": "NOT event_name:(START OR ERROR)\nAND session.player_platform:${platform} AND\nsession.media_id:urn\\:${bu}\\:* AND session.device_type:${device}\nAND\nsession.media_id:${media_id} ",
+          "refId": "B",
+          "timeField": "@timestamp"
+        },
+        {
+          "alias": "Buffer Duration",
+          "bucketAggs": [
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "10s"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "PFF8059DC6752AFDD"
+          },
+          "hide": false,
+          "metrics": [
+            {
+              "field": "data.buffer_duration",
+              "id": "1",
+              "type": "avg"
+            }
+          ],
+          "query": "NOT event_name:(START OR ERROR)\nAND session.player_platform:${platform} AND\nsession.media_id:urn\\:${bu}\\:* AND session.device_type:${device}\nAND\nsession.media_id:${media_id} ",
+          "refId": "C",
+          "timeField": "@timestamp"
+        }
+      ],
+      "type": "stat"
+    }
+  ],
+  "refresh": "5s",
+  "schemaVersion": 39,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": true,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "type": "elasticsearch",
+          "uid": "PFF8059DC6752AFDD"
+        },
+        "definition": "{\n  \"find\": \"terms\",\n  \"field\": \"data.player_platform.keyword\",\n  \"size\": 1000\n}",
+        "description": "Filter by player platform.",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Player Platform",
+        "multi": false,
+        "name": "platform",
+        "options": [],
+        "query": "{\n  \"find\": \"terms\",\n  \"field\": \"data.player_platform.keyword\",\n  \"size\": 1000\n}",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "type": "elasticsearch",
+          "uid": "PFF8059DC6752AFDD"
+        },
+        "definition": "{\n  \"find\": \"terms\",\n  \"field\": \"data.device_type.keyword\",\n  \"size\": 1000\n}",
+        "description": "The type of device that generate the event.",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Device",
+        "multi": false,
+        "name": "device",
+        "options": [],
+        "query": "{\n  \"find\": \"terms\",\n  \"field\": \"data.device_type.keyword\",\n  \"size\": 1000\n}",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "allValue": "*",
+        "current": {
+          "selected": true,
+          "text": "All",
+          "value": "$__all"
+        },
+        "hide": 0,
+        "includeAll": true,
+        "label": "Business Unit",
+        "multi": false,
+        "name": "bu",
+        "options": [
+          {
+            "selected": true,
+            "text": "All",
+            "value": "$__all"
+          },
+          {
+            "selected": false,
+            "text": "srf",
+            "value": "srf"
+          },
+          {
+            "selected": false,
+            "text": "rts",
+            "value": "rts"
+          },
+          {
+            "selected": false,
+            "text": "rsi",
+            "value": "rsi"
+          },
+          {
+            "selected": false,
+            "text": "rtr",
+            "value": "rtr"
+          },
+          {
+            "selected": false,
+            "text": "swi",
+            "value": "swi"
+          }
+        ],
+        "query": "srf, rts, rsi, rtr, swi",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "*",
+          "value": "*"
+        },
+        "hide": 0,
+        "label": "Media Id",
+        "name": "media_id",
+        "options": [
+          {
+            "selected": true,
+            "text": "*",
+            "value": "*"
+          }
+        ],
+        "query": "*",
+        "skipUrlSync": false,
+        "type": "textbox"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-15m",
+    "to": "now"
+  },
+  "timeRangeUpdatedDuringEditOrView": false,
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Metrics Overview",
+  "uid": "cdrfq3ry8fw1sc",
+  "version": 11,
+  "weekStart": ""
+}

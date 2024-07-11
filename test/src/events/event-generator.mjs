@@ -27,25 +27,15 @@ export default class EventGenerator {
   }
 
   generateBuffer(session, history, delta) {
-    const data = Object.assign({
-      buffer_duration: 0,
-      stall_count: 0,
-      stall_duration: 0,
-      playback_duration: 0,
-      player_position: 0
-    }, history.last()?.data || {});
-    data.playback_duration = data.playback_duration + delta;
-
+    const event = this.generateHeartBeat(session, history, delta);
     const media = MediaGenerator.find(session.data.media_id);
-    data.bitrate = this.bitrate(media, session, history);
-    data.bandwidth = Math.floor(random.normal(data.bitrate, data.bitrate + 200, 5));
 
-    return {
-      session_id: session.session_id,
-      timestamp: Date.now(),
-      event_name: 'BUFFER',
-      data: data
-    }
+    event.event_name = 'BUFFER';
+    event.data.bitrate = this.bitrate(media, session, history);
+    event.data.bandwidth = Math.floor(random.normal(event.data.bitrate, event.data.bitrate + 200, 5));
+    event.data.buffer_duration += Math.floor(random.normal(1, delta, 2.5));
+
+    return event;
   }
 
   generateStall(session, history, delta) {
