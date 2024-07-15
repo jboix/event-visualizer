@@ -567,7 +567,7 @@
         ]
       },
       "gridPos": {
-        "h": 8,
+        "h": 9,
         "w": 5,
         "x": 0,
         "y": 8
@@ -819,7 +819,7 @@
         ]
       },
       "gridPos": {
-        "h": 8,
+        "h": 9,
         "w": 5,
         "x": 5,
         "y": 8
@@ -988,7 +988,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 9,
         "w": 14,
         "x": 10,
         "y": 8
@@ -1070,10 +1070,10 @@
         "uid": "PFF8059DC6752AFDD"
       },
       "gridPos": {
-        "h": 4,
+        "h": 7,
         "w": 24,
         "x": 0,
-        "y": 16
+        "y": 17
       },
       "id": 8,
       "options": {
@@ -1189,8 +1189,8 @@
       {
         "current": {
           "selected": false,
-          "text": "",
-          "value": ""
+          "text": "b18f63aa-b3aa-49b5-9295-6ada0fc859ef",
+          "value": "b18f63aa-b3aa-49b5-9295-6ada0fc859ef"
         },
         "description": "The session id.",
         "hide": 0,
@@ -1198,20 +1198,20 @@
         "name": "session_id",
         "options": [
           {
-            "selected": true,
+            "selected": false,
             "text": "",
             "value": ""
           }
         ],
-        "query": "",
+        "query": "b18f63aa-b3aa-49b5-9295-6ada0fc859ef",
         "skipUrlSync": false,
         "type": "textbox"
       }
     ]
   },
   "time": {
-    "from": "now-15m",
-    "to": "now"
+    "from": "2024-07-12T13:20:45.445Z",
+    "to": "2024-07-12T13:33:49.807Z"
   },
   "timeRangeUpdatedDuringEditOrView": false,
   "timepicker": {},
