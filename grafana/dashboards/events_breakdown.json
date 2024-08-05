@@ -213,7 +213,7 @@
               "type": "count"
             }
           ],
-          "query": "NOT event_name:HEARTBEAT\nAND (\n  (data.player_platform:${platform} AND data.media_id:urn\\:${bu}\\:* AND data.device_type:${device})\n  OR \n  (session.player_platform:${platform} AND session.media_id:urn\\:${bu}\\:* AND session.device_type:${device})\n)",
+          "query": "NOT event_name:HEARTBEAT\nAND (\n  (data.player.platform:${platform} AND data.media.id:urn\\:${bu}\\:* AND data.device.type:${device})\n  OR \n  (session.player.platform:${platform} AND session.media.id:urn\\:${bu}\\:* AND session.device.type:${device})\n)",
           "refId": "A",
           "timeField": "@timestamp"
         }
@@ -456,7 +456,7 @@
               "type": "count"
             }
           ],
-          "query": "(session.player_platform:${platform}\nAND session.media_id:urn\\:${bu}\\:* \nAND session.device_type:${device}) OR \n(data.player_platform:${platform}\nAND data.media_id:urn\\:${bu}\\:* \nAND data.device_type:${device})",
+          "query": "(session.player.platform:${platform}\nAND session.media.id:urn\\:${bu}\\:* \nAND session.device.type:${device}) OR \n(data.player.platform:${platform}\nAND data.media.id:urn\\:${bu}\\:* \nAND data.device.type:${device})",
           "refId": "A",
           "timeField": "@timestamp"
         }
@@ -654,7 +654,7 @@
           "alias": "",
           "bucketAggs": [
             {
-              "field": "data.player_platform.keyword",
+              "field": "data.player.platform.keyword",
               "id": "2",
               "settings": {
                 "min_doc_count": "1",
@@ -675,7 +675,7 @@
               "type": "count"
             }
           ],
-          "query": "event_name:START AND data.player_platform:${platform} AND\ndata.media_id:urn\\:${bu}\\:*  AND data.device_type:${device}",
+          "query": "event_name:START AND data.player.platform:${platform} AND\ndata.media.id:urn\\:${bu}\\:*  AND data.device.type:${device}",
           "refId": "A",
           "timeField": "@timestamp"
         }
@@ -814,7 +814,7 @@
           "alias": "",
           "bucketAggs": [
             {
-              "field": "data.player_platform.keyword",
+              "field": "data.player.platform.keyword",
               "id": "3",
               "settings": {
                 "min_doc_count": "1",
@@ -845,7 +845,7 @@
               "type": "count"
             }
           ],
-          "query": "event_name:START AND\n(data.player_platform:${platform}\nAND data.media_id:urn\\:${bu}\\:* \nAND data.device_type:${device})",
+          "query": "event_name:START AND\n(data.player.platform:${platform}\nAND data.media.id:urn\\:${bu}\\:* \nAND data.device.type:${device})",
           "refId": "A",
           "timeField": "@timestamp"
         }
@@ -869,7 +869,7 @@
           "type": "elasticsearch",
           "uid": "PFF8059DC6752AFDD"
         },
-        "definition": "{\n  \"find\": \"terms\",\n  \"field\": \"data.player_platform.keyword\",\n  \"size\": 1000\n}",
+        "definition": "{\n  \"find\": \"terms\",\n  \"field\": \"data.player.platform.keyword\",\n  \"size\": 1000\n}",
         "description": "Filter by player platform.",
         "hide": 0,
         "includeAll": true,
@@ -877,7 +877,7 @@
         "multi": false,
         "name": "platform",
         "options": [],
-        "query": "{\n  \"find\": \"terms\",\n  \"field\": \"data.player_platform.keyword\",\n  \"size\": 1000\n}",
+        "query": "{\n  \"find\": \"terms\",\n  \"field\": \"data.player.platform.keyword\",\n  \"size\": 1000\n}",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -894,7 +894,7 @@
           "type": "elasticsearch",
           "uid": "PFF8059DC6752AFDD"
         },
-        "definition": "{\n  \"find\": \"terms\",\n  \"field\": \"data.device_type.keyword\",\n  \"size\": 1000\n}",
+        "definition": "{\n  \"find\": \"terms\",\n  \"field\": \"data.device.type.keyword\",\n  \"size\": 1000\n}",
         "description": "The type of device that generate the event.",
         "hide": 0,
         "includeAll": true,
@@ -902,7 +902,7 @@
         "multi": false,
         "name": "device",
         "options": [],
-        "query": "{\n  \"find\": \"terms\",\n  \"field\": \"data.device_type.keyword\",\n  \"size\": 1000\n}",
+        "query": "{\n  \"find\": \"terms\",\n  \"field\": \"data.device.type.keyword\",\n  \"size\": 1000\n}",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,

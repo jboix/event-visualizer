@@ -13,16 +13,16 @@ const OS_VERSIONS = [
 ];
 
 const LINUX_DEVICES = [
-  {"device_model": "Dell XPS 13", "device_type": "Laptop", "os_name": "linux", "width": 3840, "height": 2400},
-  {"device_model": "System76 Lemur Pro", "device_type": "Laptop", "os_name": "linux", "width": 1920, "height": 1080},
-  {"device_model": "Purism Librem 14", "device_type": "Laptop", "os_name": "linux", "width": 1920, "height": 1080},
-  {"device_model": "Lenovo ThinkPad X1 Carbon", "device_type": "Laptop", "os_name": "linux", "width": 2560, "height": 1440},
-  {"device_model": "Asus ZenBook 14", "device_type": "Laptop", "os_name": "linux", "width": 1920, "height": 1080},
-  {"device_model": "Acer Swift 3", "device_type": "Laptop", "os_name": "linux", "width": 1920, "height": 1080},
-  {"device_model": "System76 Thelio Major", "device_type": "Desktop", "os_name": "linux", "width": 3840, "height": 2160},
-  {"device_model": "Dell Precision 5820", "device_type": "Desktop", "os_name": "linux", "width": 5120, "height": 2880},
-  {"device_model": "Lenovo ThinkCentre M720", "device_type": "Desktop", "os_name": "linux", "width": 2560, "height": 1440},
-  {"device_model": "HP Z2 Tower G5", "device_type": "Desktop", "os_name": "linux", "width": 3840, "height": 2160}
+  {"device": { "model": "Dell XPS 13", "type": "Laptop" }, "os": { "name": "linux" }, "screen": { "width": 3840, "height": 2400 }},
+  {"device": { "model": "System76 Lemur Pro", "type": "Laptop" }, "os": { "name": "linux" }, "screen": { "width": 1920, "height": 1080 }},
+  {"device": { "model": "Purism Librem 14", "type": "Laptop" }, "os": { "name": "linux" }, "screen": { "width": 1920, "height": 1080 }},
+  {"device": { "model": "Lenovo ThinkPad X1 Carbon", "type": "Laptop" }, "os": { "name": "linux" }, "screen": { "width": 2560, "height": 1440 }},
+  {"device": { "model": "Asus ZenBook 14", "type": "Laptop" }, "os": { "name": "linux" }, "screen": { "width": 1920, "height": 1080 }},
+  {"device": { "model": "Acer Swift 3", "type": "Laptop" }, "os": { "name": "linux" }, "screen": { "width": 1920, "height": 1080 }},
+  {"device": { "model": "System76 Thelio Major", "type": "Desktop" }, "os": { "name": "linux" }, "screen": { "width": 3840, "height": 2160 }},
+  {"device": { "model": "Dell Precision 5820", "type": "Desktop" }, "os": { "name": "linux" }, "screen": { "width": 5120, "height": 2880 }},
+  {"device": { "model": "Lenovo ThinkCentre M720", "type": "Desktop" }, "os": { "name": "linux" }, "screen": { "width": 2560, "height": 1440 }},
+  {"device": { "model": "HP Z2 Tower G5", "type": "Desktop" }, "os": { "name": "linux" }, "screen": { "width": 3840, "height": 2160 }}
 ];
 
 const TYPES = [

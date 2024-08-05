@@ -86,7 +86,7 @@ export default class ErrorGenerator {
       ERRORS.filter(error => error.value.initial) :
       ERRORS.filter(error => !error.value.initial);
     const error = faker.helpers.weightedArrayElement(candidates);
-    const duration = MediaGenerator.find(session.data.media_id).duration;
+    const duration = MediaGenerator.find(session.data.media.id).duration;
 
     return {
       session_id: session.session_id,
@@ -95,7 +95,7 @@ export default class ErrorGenerator {
       data: {
         severity: 'FATAL',
         name: error.name,
-        message: error.messages[session.data.player_platform],
+        message: error.messages[session.data.player.platform],
         player_position: lastPosition,
         log: this.generateLog()
       }

@@ -271,7 +271,7 @@
           "alias": "",
           "bucketAggs": [
             {
-              "field": "data.os_name.keyword",
+              "field": "data.os.name.keyword",
               "id": "2",
               "settings": {
                 "min_doc_count": "1",
@@ -292,7 +292,7 @@
               "type": "count"
             }
           ],
-          "query": "event_name:START AND data.player_platform:${platform} AND\ndata.media_id:urn\\:${bu}\\:*  AND data.device_type:${device}",
+          "query": "event_name:START AND data.player.platform:${platform} AND\ndata.media.id:urn\\:${bu}\\:*  AND data.device.type:${device}",
           "refId": "A",
           "timeField": "@timestamp"
         }
@@ -550,7 +550,7 @@
           "alias": "",
           "bucketAggs": [
             {
-              "field": "data.device_type.keyword",
+              "field": "data.device.type.keyword",
               "id": "2",
               "settings": {
                 "min_doc_count": "1",
@@ -571,7 +571,7 @@
               "type": "count"
             }
           ],
-          "query": "event_name:START AND data.player_platform:${platform} AND\ndata.media_id:urn\\:${bu}\\:*  AND data.device_type:${device}",
+          "query": "event_name:START AND data.player.platform:${platform} AND\ndata.media.id:urn\\:${bu}\\:*  AND data.device.type:${device}",
           "refId": "A",
           "timeField": "@timestamp"
         }
@@ -724,7 +724,7 @@
           "alias": "",
           "bucketAggs": [
             {
-              "field": "data.browser.keyword",
+              "field": "data.browser.name.keyword",
               "id": "2",
               "settings": {
                 "min_doc_count": "1",
@@ -745,7 +745,7 @@
               "type": "count"
             }
           ],
-          "query": "event_name:START AND data.player_platform:${platform} AND\ndata.media_id:urn\\:${bu}\\:*  AND data.device_type:${device}",
+          "query": "event_name:START AND data.player.platform:${platform} AND\ndata.media.id:urn\\:${bu}\\:*  AND data.device.type:${device}",
           "refId": "A",
           "timeField": "@timestamp"
         }
@@ -833,7 +833,7 @@
           "alias": "",
           "bucketAggs": [
             {
-              "field": "data.os_name.keyword",
+              "field": "data.os.name.keyword",
               "id": "2",
               "settings": {
                 "min_doc_count": "1",
@@ -844,7 +844,7 @@
               "type": "terms"
             },
             {
-              "field": "data.os_version.keyword",
+              "field": "data.os.version.keyword",
               "id": "3",
               "settings": {
                 "min_doc_count": "1",
@@ -865,7 +865,7 @@
               "type": "count"
             }
           ],
-          "query": "event_name:START AND data.player_platform:${platform} AND\ndata.media_id:urn\\:${bu}\\:*  AND data.device_type:${device}",
+          "query": "event_name:START AND data.player.platform:${platform} AND\ndata.media.id:urn\\:${bu}\\:*  AND data.device.type:${device}",
           "refId": "A",
           "timeField": "@timestamp"
         }
@@ -879,8 +879,8 @@
             "mode": "reduceRow",
             "reduce": {
               "include": [
-                "data.os_name.keyword",
-                "data.os_version.keyword"
+                "data.os.name.keyword",
+                "data.os.version.keyword"
               ],
               "reducer": "allValues"
             }
@@ -890,15 +890,15 @@
           "id": "organize",
           "options": {
             "excludeByName": {
-              "data.os_name.keyword": true,
-              "data.os_version.keyword": true
+              "data.os.name.keyword": true,
+              "data.os.version.keyword": true
             },
             "includeByName": {},
             "indexByName": {
               "Count": 3,
               "OS": 2,
-              "data.os_name.keyword": 0,
-              "data.os_version.keyword": 1
+              "data.os.name.keyword": 0,
+              "data.os.version.keyword": 1
             },
             "renameByName": {
               "All values": "OS"
@@ -1021,7 +1021,7 @@
           "alias": "",
           "bucketAggs": [
             {
-              "field": "data.device_model.keyword",
+              "field": "data.device.model.keyword",
               "id": "2",
               "settings": {
                 "min_doc_count": "1",
@@ -1042,7 +1042,7 @@
               "type": "count"
             }
           ],
-          "query": "event_name:START AND data.player_platform:${platform} AND\ndata.media_id:urn\\:${bu}\\:*  AND data.device_type:${device}",
+          "query": "event_name:START AND data.player.platform:${platform} AND\ndata.media.id:urn\\:${bu}\\:*  AND data.device.type:${device}",
           "refId": "A",
           "timeField": "@timestamp"
         }
@@ -1130,7 +1130,7 @@
           "alias": "",
           "bucketAggs": [
             {
-              "field": "data.browser.keyword",
+              "field": "data.browser.name.keyword",
               "id": "2",
               "settings": {
                 "min_doc_count": "1",
@@ -1141,7 +1141,7 @@
               "type": "terms"
             },
             {
-              "field": "data.browser_version.keyword",
+              "field": "data.browser.version.keyword",
               "id": "3",
               "settings": {
                 "min_doc_count": "1",
@@ -1162,7 +1162,7 @@
               "type": "count"
             }
           ],
-          "query": "event_name:START AND data.player_platform:${platform} AND\ndata.media_id:urn\\:${bu}\\:*  AND data.device_type:${device}",
+          "query": "event_name:START AND data.player.platform:${platform} AND\ndata.media.id:urn\\:${bu}\\:*  AND data.device.type:${device}",
           "refId": "A",
           "timeField": "@timestamp"
         }
@@ -1176,8 +1176,8 @@
             "mode": "reduceRow",
             "reduce": {
               "include": [
-                "data.browser.keyword",
-                "data.browser_version.keyword"
+                "data.browser.name.keyword",
+                "data.browser.version.keyword"
               ],
               "reducer": "allValues"
             }
@@ -1187,15 +1187,15 @@
           "id": "organize",
           "options": {
             "excludeByName": {
-              "data.os_name.keyword": true,
-              "data.os_version.keyword": true
+              "data.os.name.keyword": true,
+              "data.os.version.keyword": true
             },
             "includeByName": {},
             "indexByName": {
               "Count": 3,
               "OS": 2,
-              "data.os_name.keyword": 0,
-              "data.os_version.keyword": 1
+              "data.os.name.keyword": 0,
+              "data.os.version.keyword": 1
             },
             "renameByName": {
               "All values": "OS"
@@ -1249,7 +1249,7 @@
           "type": "elasticsearch",
           "uid": "PFF8059DC6752AFDD"
         },
-        "definition": "{\n  \"find\": \"terms\",\n  \"field\": \"data.player_platform.keyword\",\n  \"size\": 1000\n}",
+        "definition": "{\n  \"find\": \"terms\",\n  \"field\": \"data.player.platform.keyword\",\n  \"size\": 1000\n}",
         "description": "Filter by player platform.",
         "hide": 0,
         "includeAll": true,
@@ -1257,7 +1257,7 @@
         "multi": false,
         "name": "platform",
         "options": [],
-        "query": "{\n  \"find\": \"terms\",\n  \"field\": \"data.player_platform.keyword\",\n  \"size\": 1000\n}",
+        "query": "{\n  \"find\": \"terms\",\n  \"field\": \"data.player.platform.keyword\",\n  \"size\": 1000\n}",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -1274,7 +1274,7 @@
           "type": "elasticsearch",
           "uid": "PFF8059DC6752AFDD"
         },
-        "definition": "{\n  \"find\": \"terms\",\n  \"field\": \"data.device_type.keyword\",\n  \"size\": 1000\n}",
+        "definition": "{\n  \"find\": \"terms\",\n  \"field\": \"data.device.type.keyword\",\n  \"size\": 1000\n}",
         "description": "The type of device that generate the event.",
         "hide": 0,
         "includeAll": true,
@@ -1282,7 +1282,7 @@
         "multi": false,
         "name": "device",
         "options": [],
-        "query": "{\n  \"find\": \"terms\",\n  \"field\": \"data.device_type.keyword\",\n  \"size\": 1000\n}",
+        "query": "{\n  \"find\": \"terms\",\n  \"field\": \"data.device.type.keyword\",\n  \"size\": 1000\n}",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,

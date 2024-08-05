@@ -155,7 +155,7 @@
               "type": "avg"
             }
           ],
-          "query": "NOT event_name:(START OR ERROR) AND session.player_platform:${platform} AND\nsession.media_id:urn\\:${bu}\\:* AND session.device_type:${device}\nAND\nsession.media_id:${media_id} ",
+          "query": "NOT event_name:(START OR ERROR) AND session.player.platform:${platform} AND\nsession.media.id:urn\\:${bu}\\:* AND session.device.type:${device}\nAND\nsession.media.id:${media_id} ",
           "refId": "A",
           "timeField": "@timestamp"
         },
@@ -183,7 +183,7 @@
               "type": "avg"
             }
           ],
-          "query": "NOT event_name:(START OR ERROR) AND session.player_platform:${platform} AND\nsession.media_id:urn\\:${bu}\\:* AND session.device_type:${device}\nAND\nsession.media_id:${media_id} ",
+          "query": "NOT event_name:(START OR ERROR) AND session.player.platform:${platform} AND\nsession.media.id:urn\\:${bu}\\:* AND session.device.type:${device}\nAND\nsession.media.id:${media_id} ",
           "refId": "B",
           "timeField": "@timestamp"
         }
@@ -308,12 +308,12 @@
           "hide": true,
           "metrics": [
             {
-              "field": "data.stall_count",
+              "field": "data.stall.count",
               "id": "1",
               "type": "avg"
             }
           ],
-          "query": "NOT event_name:(START OR ERROR)\nAND session.player_platform:${platform} AND\nsession.media_id:urn\\:${bu}\\:* AND session.device_type:${device}\nAND\nsession.media_id:${media_id} ",
+          "query": "NOT event_name:(START OR ERROR)\nAND session.player.platform:${platform} AND\nsession.media.id:urn\\:${bu}\\:* AND session.device.type:${device}\nAND\nsession.media.id:${media_id} ",
           "refId": "A",
           "timeField": "@timestamp"
         },
@@ -341,7 +341,7 @@
               "type": "avg"
             }
           ],
-          "query": "NOT event_name:(START OR ERROR)\nAND session.player_platform:${platform} AND\nsession.media_id:urn\\:${bu}\\:* AND session.device_type:${device}\nAND\nsession.media_id:${media_id} ",
+          "query": "NOT event_name:(START OR ERROR)\nAND session.player.platform:${platform} AND\nsession.media.id:urn\\:${bu}\\:* AND session.device.type:${device}\nAND\nsession.media.id:${media_id} ",
           "refId": "B",
           "timeField": "@timestamp"
         },
@@ -477,12 +477,12 @@
           "hide": true,
           "metrics": [
             {
-              "field": "data.stall_duration",
+              "field": "data.stall.duration",
               "id": "1",
               "type": "avg"
             }
           ],
-          "query": "NOT event_name:(START OR ERROR)\nAND session.player_platform:${platform} AND\nsession.media_id:urn\\:${bu}\\:* AND session.device_type:${device}\nAND\nsession.media_id:${media_id} ",
+          "query": "NOT event_name:(START OR ERROR)\nAND session.player.platform:${platform} AND\nsession.media.id:urn\\:${bu}\\:* AND session.device.type:${device}\nAND\nsession.media.id:${media_id} ",
           "refId": "A",
           "timeField": "@timestamp"
         },
@@ -510,7 +510,7 @@
               "type": "avg"
             }
           ],
-          "query": "NOT event_name:(START OR ERROR)\nAND session.player_platform:${platform} AND\nsession.media_id:urn\\:${bu}\\:* AND session.device_type:${device}\nAND\nsession.media_id:${media_id} ",
+          "query": "NOT event_name:(START OR ERROR)\nAND session.player.platform:${platform} AND\nsession.media.id:urn\\:${bu}\\:* AND session.device.type:${device}\nAND\nsession.media.id:${media_id} ",
           "refId": "B",
           "timeField": "@timestamp"
         },
@@ -641,7 +641,7 @@
               "type": "avg"
             }
           ],
-          "query": "event_name:START\nAND data.player_platform:${platform} AND\ndata.media_id:urn\\:${bu}\\:* AND data.device_type:${device}\nAND\ndata.media_id:${media_id} ",
+          "query": "event_name:START\nAND data.player.platform:${platform} AND\ndata.media.id:urn\\:${bu}\\:* AND data.device.type:${device}\nAND\ndata.media.id:${media_id} ",
           "refId": "B",
           "timeField": "@timestamp"
         },
@@ -672,7 +672,7 @@
               "type": "avg"
             }
           ],
-          "query": "event_name:START\nAND data.player_platform:${platform} AND\ndata.media_id:urn\\:${bu}\\:* AND data.device_type:${device}\nAND\ndata.media_id:${media_id} ",
+          "query": "event_name:START\nAND data.player.platform:${platform} AND\ndata.media.id:urn\\:${bu}\\:* AND data.device.type:${device}\nAND\ndata.media.id:${media_id} ",
           "refId": "C",
           "timeField": "@timestamp"
         },
@@ -702,7 +702,7 @@
               "type": "avg"
             }
           ],
-          "query": "event_name:START\nAND data.player_platform:${platform} AND\ndata.media_id:urn\\:${bu}\\:* AND data.device_type:${device}\nAND\ndata.media_id:${media_id} ",
+          "query": "event_name:START\nAND data.player.platform:${platform} AND\ndata.media.id:urn\\:${bu}\\:* AND data.device.type:${device}\nAND\ndata.media.id:${media_id} ",
           "refId": "A",
           "timeField": "@timestamp"
         }
@@ -872,12 +872,12 @@
           },
           "metrics": [
             {
-              "field": "data.stall_duration",
+              "field": "data.stall.duration",
               "id": "1",
               "type": "avg"
             }
           ],
-          "query": "NOT event_name:(START OR ERROR)\nAND session.player_platform:${platform} AND\nsession.media_id:urn\\:${bu}\\:* AND session.device_type:${device}\nAND\nsession.media_id:${media_id} ",
+          "query": "NOT event_name:(START OR ERROR)\nAND session.player.platform:${platform} AND\nsession.media.id:urn\\:${bu}\\:* AND session.device.type:${device}\nAND\nsession.media.id:${media_id} ",
           "refId": "A",
           "timeField": "@timestamp"
         },
@@ -900,12 +900,12 @@
           "hide": false,
           "metrics": [
             {
-              "field": "data.stall_count",
+              "field": "data.stall.count",
               "id": "1",
               "type": "avg"
             }
           ],
-          "query": "NOT event_name:(START OR ERROR)\nAND session.player_platform:${platform} AND\nsession.media_id:urn\\:${bu}\\:* AND session.device_type:${device}\nAND\nsession.media_id:${media_id} ",
+          "query": "NOT event_name:(START OR ERROR)\nAND session.player.platform:${platform} AND\nsession.media.id:urn\\:${bu}\\:* AND session.device.type:${device}\nAND\nsession.media.id:${media_id} ",
           "refId": "B",
           "timeField": "@timestamp"
         },
@@ -933,7 +933,7 @@
               "type": "avg"
             }
           ],
-          "query": "NOT event_name:(START OR ERROR)\nAND session.player_platform:${platform} AND\nsession.media_id:urn\\:${bu}\\:* AND session.device_type:${device}\nAND\nsession.media_id:${media_id} ",
+          "query": "NOT event_name:(START OR ERROR)\nAND session.player.platform:${platform} AND\nsession.media.id:urn\\:${bu}\\:* AND session.device.type:${device}\nAND\nsession.media.id:${media_id} ",
           "refId": "C",
           "timeField": "@timestamp"
         }
@@ -956,7 +956,7 @@
           "type": "elasticsearch",
           "uid": "PFF8059DC6752AFDD"
         },
-        "definition": "{\n  \"find\": \"terms\",\n  \"field\": \"data.player_platform.keyword\",\n  \"size\": 1000\n}",
+        "definition": "{\n  \"find\": \"terms\",\n  \"field\": \"data.player.platform.keyword\",\n  \"size\": 1000\n}",
         "description": "Filter by player platform.",
         "hide": 0,
         "includeAll": true,
@@ -964,7 +964,7 @@
         "multi": false,
         "name": "platform",
         "options": [],
-        "query": "{\n  \"find\": \"terms\",\n  \"field\": \"data.player_platform.keyword\",\n  \"size\": 1000\n}",
+        "query": "{\n  \"find\": \"terms\",\n  \"field\": \"data.player.platform.keyword\",\n  \"size\": 1000\n}",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -981,7 +981,7 @@
           "type": "elasticsearch",
           "uid": "PFF8059DC6752AFDD"
         },
-        "definition": "{\n  \"find\": \"terms\",\n  \"field\": \"data.device_type.keyword\",\n  \"size\": 1000\n}",
+        "definition": "{\n  \"find\": \"terms\",\n  \"field\": \"data.device.type.keyword\",\n  \"size\": 1000\n}",
         "description": "The type of device that generate the event.",
         "hide": 0,
         "includeAll": true,
@@ -989,7 +989,7 @@
         "multi": false,
         "name": "device",
         "options": [],
-        "query": "{\n  \"find\": \"terms\",\n  \"field\": \"data.device_type.keyword\",\n  \"size\": 1000\n}",
+        "query": "{\n  \"find\": \"terms\",\n  \"field\": \"data.device.type.keyword\",\n  \"size\": 1000\n}",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,

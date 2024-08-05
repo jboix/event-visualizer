@@ -18,9 +18,10 @@ export default class PlatformGenerator {
       result = this.device();
     }
 
-    result.origin = this.origin();
-    result.media_id = this.mediaGenerator.media(result.origin);
-    result.media_source = `https://il.srgssr.ch/integrationlayer/2.1/mediaComposition/byUrn/${result.media_id}`;
+    result.media = {};
+    result.media.origin = this.origin();
+    result.media.id = this.mediaGenerator.media(result.media.origin);
+    result.media.source = `https://il.srgssr.ch/integrationlayer/2.1/mediaComposition/byUrn/${result.media.id}`;
 
     return result;
   }
@@ -30,8 +31,10 @@ export default class PlatformGenerator {
 
     let result = generator.device();
 
-    result.player_name = 'pillarbox';
-    result.player_platform = this.platform;
+    result.player = {
+      name: 'pillarbox',
+      platform: this.platform
+    };
 
     this.cache.add(result);
 

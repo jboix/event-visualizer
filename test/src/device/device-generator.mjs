@@ -25,11 +25,11 @@ export class DeviceGenerator {
    */
   device() {
     const type = this.type();
-    const filteredDevices = this.devices.filter(device => device.device_type === type);
+    const filteredDevices = this.devices.filter(device => device.device.type === type);
     const result = Object.assign({}, faker.helpers.arrayElement(filteredDevices));
 
-    result.os_version = this.osVersion();
-    result.idevice_id = faker.phone.imei();
+    result.os.version = this.osVersion();
+    result.device.id = faker.phone.imei();
 
     return result;
   }

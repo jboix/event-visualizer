@@ -16,24 +16,24 @@ const DEVICES = [
 ];
 
 const DOMAINS = [
-  { value: 'https://www.srf.ch/news', weight: 15 },
-  { value: 'https://www.srf.ch/sports', weight: 15 },
-  { value: 'https://www.srf.ch/kultur', weight: 15 },
-  { value: 'https://www.srf.ch/play', weight: 30 },
-  { value: 'https://www.srf.ch/play', weight: 20 },
-  { value: 'https://www.rts.ch/info', weight: 10 },
-  { value: 'https://www.rts.ch/sport', weight: 10 },
-  { value: 'https://www.rts.ch/culture', weight: 10 },
-  { value: 'https://www.rts.ch/play', weight: 10 },
-  { value: 'https://www.rsi.ch/news', weight: 5 },
-  { value: 'https://www.rsi.ch/sports', weight: 5 },
-  { value: 'https://www.rsi.ch/cultura', weight: 5 },
-  { value: 'https://www.rsi.ch/play', weight: 10 },
-  { value: 'https://www.swi.ch/', weight: 3 },
-  { value: 'https://www.rtr.ch/play', weight: 2 },
-  { value: 'https://www.rtr.ch/novitads', weight: 1 },
-  { value: 'https://www.rtr.ch/sport', weight: 1 },
-  { value: 'https://www.rtr.ch/cultura', weight: 1 }
+  {value: 'https://www.srf.ch/news', weight: 15},
+  {value: 'https://www.srf.ch/sports', weight: 15},
+  {value: 'https://www.srf.ch/kultur', weight: 15},
+  {value: 'https://www.srf.ch/play', weight: 30},
+  {value: 'https://www.srf.ch/play', weight: 20},
+  {value: 'https://www.rts.ch/info', weight: 10},
+  {value: 'https://www.rts.ch/sport', weight: 10},
+  {value: 'https://www.rts.ch/culture', weight: 10},
+  {value: 'https://www.rts.ch/play', weight: 10},
+  {value: 'https://www.rsi.ch/news', weight: 5},
+  {value: 'https://www.rsi.ch/sports', weight: 5},
+  {value: 'https://www.rsi.ch/cultura', weight: 5},
+  {value: 'https://www.rsi.ch/play', weight: 10},
+  {value: 'https://www.swi.ch/', weight: 3},
+  {value: 'https://www.rtr.ch/play', weight: 2},
+  {value: 'https://www.rtr.ch/novitads', weight: 1},
+  {value: 'https://www.rtr.ch/sport', weight: 1},
+  {value: 'https://www.rtr.ch/cultura', weight: 1}
 ];
 
 class WebPlatformGenerator extends PlatformGenerator {
@@ -45,7 +45,7 @@ class WebPlatformGenerator extends PlatformGenerator {
 
   origin() {
     const domain = faker.helpers.weightedArrayElement(this.domains);
-    const articleDate = faker.date.recent({ days: 360 });
+    const articleDate = faker.date.recent({days: 360});
     const articleTitle = faker.helpers.slugify(
       faker.word.words(faker.number.int({min: 3, max: 10}))
     );
@@ -57,11 +57,14 @@ class WebPlatformGenerator extends PlatformGenerator {
     const generator = faker.helpers.weightedArrayElement(this.devices);
 
     let result = generator.device();
-    while (result.device_type === 'TV') result = generator.device();
+    while (result.device.type === 'TV') result = generator.device();
 
-    result.player_name = 'pillarbox';
-    result.player_platform = this.platform;
-    Object.assign(result, browser.browser(result.os_name));
+    result.player = {
+      name: 'pillarbox',
+      platform: this.platform
+    };
+
+    result.browser = browser.browser(result.os.name);
 
     this.cache.add(result);
 
@@ -70,7 +73,7 @@ class WebPlatformGenerator extends PlatformGenerator {
 }
 
 export default {
-  create: function() {
+  create: function () {
     return new WebPlatformGenerator(DEVICES, DOMAINS, 'web');
   }
 };

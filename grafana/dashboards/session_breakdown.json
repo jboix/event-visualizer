@@ -116,16 +116,16 @@
           "options": {
             "include": {
               "names": [
-                "data.device_model",
-                "data.device_type",
-                "data.height",
-                "data.media_id",
-                "data.media_source",
-                "data.origin",
-                "data.os_name",
-                "data.os_version",
-                "data.player_platform",
-                "data.width"
+                "data.device.model",
+                "data.device.type",
+                "data.screen.height",
+                "data.media.id",
+                "data.media.source",
+                "data.media.origin",
+                "data.os.name",
+                "data.os.version",
+                "data.player.platform",
+                "data.screen.width"
               ]
             }
           }
@@ -136,26 +136,26 @@
             "excludeByName": {},
             "includeByName": {},
             "indexByName": {
-              "data.device_model": 1,
-              "data.device_type": 2,
-              "data.height": 4,
-              "data.media_id": 5,
-              "data.media_source": 6,
-              "data.origin": 7,
-              "data.os_name": 8,
-              "data.os_version": 9,
-              "data.player_platform": 0,
-              "data.width": 3
+              "data.device.model": 1,
+              "data.device.type": 2,
+              "data.screen.height": 4,
+              "data.media.id": 5,
+              "data.media.source": 6,
+              "data.media.origin": 7,
+              "data.os.name": 8,
+              "data.os.version": 9,
+              "data.player.platform": 0,
+              "data.screen.width": 3
             },
             "renameByName": {
-              "data.device_model": "Device Model",
-              "data.device_type": "Device Type",
-              "data.media_id": "Media ID",
-              "data.media_source": "Media Source",
-              "data.origin": "Origin",
-              "data.os_name": "",
-              "data.player_name": "",
-              "data.player_platform": "Player Platform"
+              "data.device.model": "Device Model",
+              "data.device.type": "Device Type",
+              "data.media.id": "Media ID",
+              "data.media.source": "Media Source",
+              "data.media.origin": "Origin",
+              "data.os.name": "",
+              "data.player.name": "",
+              "data.player.platform": "Player Platform"
             }
           }
         },
@@ -164,14 +164,14 @@
           "options": {
             "alias": "Screen Size",
             "binary": {
-              "left": "data.width",
-              "right": "data.height"
+              "left": "data.screen.width",
+              "right": "data.screen.height"
             },
             "mode": "reduceRow",
             "reduce": {
               "include": [
-                "data.height",
-                "data.width"
+                "data.screen.height",
+                "data.screen.width"
               ],
               "reducer": "allValues"
             }
@@ -184,8 +184,8 @@
             "mode": "reduceRow",
             "reduce": {
               "include": [
-                "data.os_name",
-                "data.os_version"
+                "data.os.name",
+                "data.os.version"
               ],
               "reducer": "allValues"
             }
@@ -195,10 +195,10 @@
           "id": "organize",
           "options": {
             "excludeByName": {
-              "data.height": true,
-              "data.os_name": true,
-              "data.os_version": true,
-              "data.width": true
+              "data.screen.height": true,
+              "data.os.name": true,
+              "data.os.version": true,
+              "data.screen.width": true
             },
             "includeByName": {},
             "indexByName": {},
@@ -624,8 +624,8 @@
                 "data.bitrate",
                 "data.buffer_duration",
                 "data.playback_duration",
-                "data.stall_count",
-                "data.stall_duration",
+                "data.stall.count",
+                "data.stall.duration",
                 "session_id",
                 "@timestamp"
               ]
@@ -647,8 +647,8 @@
               "data.bitrate (lastNotNull)": 1,
               "data.buffer_duration (lastNotNull)": 4,
               "data.playback_duration (lastNotNull)": 7,
-              "data.stall_count (lastNotNull)": 5,
-              "data.stall_duration (lastNotNull)": 6,
+              "data.stall.count (lastNotNull)": 5,
+              "data.stall.duration (lastNotNull)": 6,
               "session_id": 0
             },
             "renameByName": {
@@ -663,10 +663,10 @@
               "data.playback_duration": "Playback Duration",
               "data.playback_duration (firstNotNull)": "Playback Duration",
               "data.playback_duration (lastNotNull)": "Playback Duration",
-              "data.stall_count": "Stall Count",
-              "data.stall_count (lastNotNull)": "Stall Count",
-              "data.stall_duration": "Stall Duration",
-              "data.stall_duration (lastNotNull)": "Stall Duration",
+              "data.stall.count": "Stall Count",
+              "data.stall.count (lastNotNull)": "Stall Count",
+              "data.stall.duration": "Stall Duration",
+              "data.stall.duration (lastNotNull)": "Stall Duration",
               "session_id": "Session"
             }
           }

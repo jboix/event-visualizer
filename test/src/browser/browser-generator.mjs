@@ -60,8 +60,8 @@ export default {
     const browser = faker.helpers.weightedArrayElement(compatibleBrowsers);
 
     return {
-      browser: browser.name,
-      browser_version: random.normalElement(browser.versions, browser.versions.length -1)
+      name: browser.name,
+      version: random.normalElement(browser.versions, browser.versions.length - 1)
     }
   }
 }

@@ -21,7 +21,7 @@ export default class SessionGenerator {
 
   generateSession(isError = false) {
     const data = faker.helpers.weightedArrayElement(this.platforms).generate();
-    data.time_metrics = this.timeMetrics(data.device_type, isError);
+    data.time_metrics = this.timeMetrics(data.device.type, isError);
 
     return {
       session_id: faker.string.uuid(),
@@ -37,6 +37,7 @@ export default class SessionGenerator {
     let timeMetrics = {
       media_source: !isError ? random.normal(600, 10000, skew) : 0,
       asset: random.normal(200, 5000, skew),
+      token: random.normal(10, 100),
       drm: !isError ? random.normal(100, 1000, skew) : 0
     };
 
