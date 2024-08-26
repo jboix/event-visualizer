@@ -20,12 +20,17 @@ function sleep(ms) {
 
 async function postEvent(event) {
   try {
+    const startTime = Date.now(); // Start time in milliseconds
     const response = await axios.post('http://localhost:8080/api/events', event);
-    console.log(`Event posted: ${response.status}`);
+    const endTime = Date.now(); // End time in milliseconds
+    const elapsedTime = endTime - startTime; // Calculate the elapsed time
+
+    console.log(`Event posted: ${response.status}, Time taken: ${elapsedTime} ms`);
   } catch (error) {
     console.error(`Error posting event: ${error.message}`);
   }
 }
+
 
 async function generateLongSession() {
   const heartbeatDelay = 5;

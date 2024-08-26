@@ -1,11 +1,23 @@
 services:
-  qos-rest-api:
-    build: ./qos-rest
-    image: jspboix/qos-rest-api:1.0.0
-    container_name: qos-rest-api
+  qos-sse-broker:
+    build: ./qos-sse-broker
+    image: jspboix/qos-sse-broker:1.0.0
+    container_name: qos-sse-broker
     ports:
       - "8080:8080"
     environment:
+      - PORT=8080
+    labels:
+      kompose.service.type: "NodePort"
+
+  qos-data-transfer:
+    build: ./qos-data-transfer
+    image: jspboix/qos-data-transfer:1.0.0
+    container_name: qos-data-transfer
+    ports:
+      - "8081:8081"
+    environment:
+      - PILLARBOX_QOS_SSE_URI=http://qos-sse-broker:8080/events
       - SPRING_ELASTICSEARCH_URIS=http://elastic:9200
     labels:
       kompose.service.type: "NodePort"
@@ -19,6 +31,12 @@ services:
       - '9300:9300'
     labels:
       kompose.service.type: "ClusterIp"
+    deploy:
+      resources:
+        limits:
+          memory: 1g
+        reservations:
+          memory: 512m
 
   grafana:
     build: ./grafana

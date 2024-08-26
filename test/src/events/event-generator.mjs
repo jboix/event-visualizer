@@ -22,8 +22,9 @@ export default class EventGenerator {
 
     return {
       session_id: session.session_id,
-      timestamp: Date.now(),
       event_name: data.player_position >= duration ? 'STOP' : 'HEARTBEAT',
+      timestamp: Date.now(),
+      version: 1,
       data: data
     }
   }

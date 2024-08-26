@@ -92,6 +92,7 @@ export default class ErrorGenerator {
       session_id: session.session_id,
       event_name: "ERROR",
       timestamp: Date.now(),
+      version: 1,
       data: {
         severity: 'FATAL',
         name: error.name,

@@ -43,7 +43,8 @@ echo "Minikube IP address: $(minikube ip)"
 
 # Define the services and their corresponding image names and build contexts
 declare -A services=(
-    ["qos-rest-api"]="jspboix/qos-rest-api:1.0.0 ./qos-rest"
+    ["qos-sse-brokerr"]="jspboix/qos-sse-broker:1.0.0 ./qos-sse-broker"
+    ["qos-data-transfer"]="jspboix/qos-data-transfer:1.0.0 ./qos-data-transfer"
     ["elasticsearch"]="jspboix/elasticsearch:1.0.0 ./elastic-search"
     ["grafana"]="jspboix/grafana:1.0.0 ./grafana"
 )
@@ -77,11 +78,13 @@ helm upgrade -i my-release ./helm-chart
 
 # Wait for the pods to be ready
 wait_for_deployment_ready "grafana" "default"
-wait_for_deployment_ready "qos-rest-api" "default"
+wait_for_deployment_ready "qos-sse-broker" "default"
+wait_for_deployment_ready "qos-data-transfer" "default"
 
 # Port forwarding services
 kubectl port-forward svc/grafana 3000:3000 -n default &
-kubectl port-forward svc/qos-rest-api 8080:8080 -n default &
+kubectl port-forward svc/qos-sse-broker 8080:8080 -n default &
+kubectl port-forward svc/qos-data-transfer 8081:8081 -n default &
 
 # Open Minikube dashboard and wait for user interruption
 minikube dashboard &

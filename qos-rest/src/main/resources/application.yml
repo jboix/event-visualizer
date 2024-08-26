@@ -1,8 +1,0 @@
-spring:
-  data.elasticsearch.repositories.enabled: true
-  elasticsearch.uris: "http://elastic:9200"
-
-server:
-  port: 8080
-  http2.enabled: true
-  compression.enabled: true

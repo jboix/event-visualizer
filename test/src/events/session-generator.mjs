@@ -27,6 +27,7 @@ export default class SessionGenerator {
       session_id: faker.string.uuid(),
       event_name: "START",
       timestamp: Date.now(),
+      version: 1,
       data: data
     }
   }

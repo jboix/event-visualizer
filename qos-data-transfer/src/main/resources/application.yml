@@ -1,0 +1,20 @@
+spring:
+  application.name: pillarbox-qos-data-transfer
+  data.elasticsearch.repositories.enabled: true
+  elasticsearch.uris: "http://localhost:9200"
+
+pillarbox.qos.sse:
+  uri: "http://localhost:8080/events"
+
+server:
+  port: 8081
+  http2.enabled: true
+  compression.enabled: true
+
+management:
+  endpoints.web.exposure.include: health
+  endpoint.health.show-details: always
+  health.benchmark.enabled: true
+
+logging.level:
+  ch.srgssr.pillarbox.qos: INFO

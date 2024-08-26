@@ -51,8 +51,12 @@ graph TD
     J[Grafana]
   end
 
-  subgraph A[Rest API]
-    B[Spring Boot Application]
+  subgraph A[Event Dispatcher]
+    B[Go Application]
+  end
+
+   subgraph C[Batch]
+    D[Spring Boot Application]
   end
 
   subgraph G[Data Storage]
@@ -60,7 +64,8 @@ graph TD
   end
 
   Clients -->|Emit events| A
-  A -->|Publishes events| G
+  A -->|Publishes events| C
+  C -->|Forwards events| G
   I -->|Reads from| G
 ```
 
